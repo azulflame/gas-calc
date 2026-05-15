@@ -117,51 +117,51 @@ export default function MileageForm({data}: {data: typeof mileage_defaults}) {
                             <TableBody>
                                 <TableRow key="january">
                                     <TableCell>January</TableCell>
-                                    <TableCell>{data.january}</TableCell>
+                                    <TableCell>{data.january.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="february">
                                     <TableCell>February</TableCell>
-                                    <TableCell>{data.february}</TableCell>
+                                    <TableCell>{data.february.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="march">
                                     <TableCell>March</TableCell>
-                                    <TableCell>{data.march}</TableCell>
+                                    <TableCell>{data.march.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="april">
                                     <TableCell>April</TableCell>
-                                    <TableCell>{data.april}</TableCell>
+                                    <TableCell>{data.april.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="may">
                                     <TableCell>May</TableCell>
-                                    <TableCell>{data.may}</TableCell>
+                                    <TableCell>{data.may.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="june">
                                     <TableCell>June</TableCell>
-                                    <TableCell>{data.june}</TableCell>
+                                    <TableCell>{data.june.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="july">
                                     <TableCell>July</TableCell>
-                                    <TableCell>{data.july}</TableCell>
+                                    <TableCell>{data.july.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="august">
                                     <TableCell>August</TableCell>
-                                    <TableCell>{data.august}</TableCell>
+                                    <TableCell>{data.august.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="september">
                                     <TableCell>September</TableCell>
-                                    <TableCell>{data.september}</TableCell>
+                                    <TableCell>{data.september.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="october">
                                     <TableCell>October</TableCell>
-                                    <TableCell>{data.october}</TableCell>
+                                    <TableCell>{data.october.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="november">
                                     <TableCell>November</TableCell>
-                                    <TableCell>{data.november}</TableCell>
+                                    <TableCell>{data.november.toFixed(2)}</TableCell>
                                 </TableRow>
                                 <TableRow key="december">
                                     <TableCell>December</TableCell>
-                                    <TableCell>{data.december}</TableCell>
+                                    <TableCell>{data.december.toFixed(2)}</TableCell>
                                 </TableRow>
                             </TableBody>
                         </Table>
