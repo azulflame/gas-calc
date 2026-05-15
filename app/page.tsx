@@ -142,19 +142,11 @@ export default function Home() {
     days.push(mileage.saturday.map(x => x.miles).reduce((prev, curr) => prev+ curr, 0))
     const month = (mileage.month.map(x => x.miles * x.amount ).reduce((prev, curr) => prev+curr, 0) + mileage.year.map(x => x.miles * x.amount ).reduce((prev, curr) => prev+curr, 0))/12
 
-    console.log(JSON.stringify(days))
-    console.log(month)
     let jan = month;
     for (let i = 1; i <= 31; i++)
     {
-      console.log((mileage.targetYear.toString() + "-01-" + i.toString()))
-      console.log(new Date(Date.parse(mileage.targetYear.toString() + "-01-" + i.toString())).getDate()%7)
-      console.log(days[new Date(Date.parse(mileage.targetYear.toString() + "-01-" + i.toString())).getDate()%7])
         jan += days[new Date(Date.parse(mileage.targetYear.toString() + "-01-" + i.toString())).getDate()%7]
     }
-    console.log("jan: " + jan)
-    console.log(jan / mileage.mpg)
-    console.log((jan/mileage.mpg) * mileage.cost)
     toOutput.january = (jan / mileage.mpg) * mileage.cost;
 
     let feb = month;
@@ -234,8 +226,6 @@ export default function Home() {
         dec += days[new Date(Date.parse(mileage.targetYear.toString() + "-12-" + i.toString())).getDate()%7]
     }
     toOutput.december = (dec / mileage.mpg) * mileage.cost;
-
-    console.log(toOutput)
 
     return toOutput;
   }
