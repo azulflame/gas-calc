@@ -1,7 +1,7 @@
 "use client"
 
 import { Controller, useFormContext } from 'react-hook-form';
-import {Field, FieldContent, FieldGroup, FieldLabel, FieldDescription} from '@/components/ui/field';
+import {Field, FieldContent, FieldGroup, FieldLabel, FieldDescription, FieldSet} from '@/components/ui/field';
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
@@ -25,11 +25,16 @@ const InputElement: React.FC<InputElementProps> = ({name, remove, ...props}) => 
         <Card>
             <CardContent>
                 <div className="flex flex-row justify-right items-center flex">
+                    <FieldSet>
                     <Field>
                         <FieldLabel>From:</FieldLabel>
                         <Input {...form.register(`${name}.from`)}/>
+                    </Field>
+                    <Field>
                         <FieldLabel>To:</FieldLabel>
                         <Input {...form.register(`${name}.to`)}/>
+                    </Field>
+                    <Field>
                         <FieldLabel>Miles:</FieldLabel>
                         <Controller
                             name={`${name}.miles`}
@@ -43,6 +48,8 @@ const InputElement: React.FC<InputElementProps> = ({name, remove, ...props}) => 
                             />
                             )}
                         />
+                    </Field>
+                    <Field>
                         <FieldLabel>Trip Count</FieldLabel>
                         <Controller
                             name={`${name}.amount`}
@@ -57,7 +64,12 @@ const InputElement: React.FC<InputElementProps> = ({name, remove, ...props}) => 
                             )}
                         />
                     </Field>
-                    <Button onClick={remove}>X</Button>
+                        <Field>
+                            <center>
+                                <Button variant="destructive" onClick={remove}>Delete</Button>
+                            </center>
+                        </Field>
+                    </FieldSet>
                 </div>
             </CardContent>
         </Card>

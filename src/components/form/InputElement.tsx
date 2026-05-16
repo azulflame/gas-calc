@@ -25,16 +25,26 @@ const InputElement: React.FC<InputElementProps> = ({name, remove, ...props}) => 
     return (
         <Card>
             <CardContent>
-                <div className="flex flex-row justify-right items-center flex">
+                <div className="justify-center items-center grid-cols-1">
+                    <FieldGroup>
                     <Field>
                         <FieldLabel>From:</FieldLabel>
                         <Input {...form.register(`${name}.from`)}/>
+                    </Field>
+                    <Field>
                         <FieldLabel>To:</FieldLabel>
                         <Input {...form.register(`${name}.to`)}/>
+                    </Field>
+                    <Field>
                         <FieldLabel>Miles:</FieldLabel>
                         <Input {...form.register(`${name}.miles`)}/>
                     </Field>
-                    <Button onClick={remove}>X</Button>
+                    <Field>
+                        <center>
+                            <Button onClick={remove} variant="destructive">Remove</Button>
+                        </center>
+                    </Field>
+                    </FieldGroup>
                 </div>
             </CardContent>
         </Card>

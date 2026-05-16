@@ -7,7 +7,7 @@ import InputElement from './InputElement';
 import InputQuantityElement from './InputQuantityElement';
 
 
-export default function TripListForm({name, quantity, ...props}: {name: string, quantity?: boolean}) {
+export default function TripListForm({name, quantity, mycss, ...props}: {mycss?: string, name: string, quantity?: boolean}) {
 
     const form = useFormContext()
 
@@ -23,36 +23,38 @@ export default function TripListForm({name, quantity, ...props}: {name: string, 
                 <CardTitle>{name.at(0)?.toUpperCase() + name.slice(1).toLowerCase()}</CardTitle>
             </CardHeader>
             <CardContent>
-                {fields.map((field, index) => {
-                            if (quantity) {
-                                return ( 
-                                    <InputQuantityElement
-                                        key={field.id}
-                                        id={`${name}.${index}`}
-                                        remove={() => remove(index)}
-                                        {...form.register(`${name}.${index}`)}
-                                    />
-                                )
+                <div className={`${mycss}`}>
+                    {fields.map((field, index) => {
+                                if (quantity) {
+                                    return ( 
+                                        <InputQuantityElement
+                                            key={field.id}
+                                            id={`${name}.${index}`}
+                                            remove={() => remove(index)}
+                                            {...form.register(`${name}.${index}`)}
+                                        />
+                                    )
+                                }
+                                else {
+                                    return (
+                                        <InputElement
+                                            key={field.id}
+                                            id={`${name}.${index}`}
+                                            remove={() => remove(index)}
+                                            {...form.register(`${name}.${index}`)}
+                                        />
+                                    )
+                                }
                             }
-                            else {
-                                return (
-                                    <InputElement
-                                        key={field.id}
-                                        id={`${name}.${index}`}
-                                        remove={() => remove(index)}
-                                        {...form.register(`${name}.${index}`)}
-                                    />
-                                )
-                            }
-                        }
-                    )
-                }
+                        )
+                    }
+                </div>
                 { (name==="month" || name==="year") &&
                         <Button
                             type="button"
                             variant="outline"
                             size="sm"
-                            onClick={() => append({miles: 0, quantity: 1})}
+                            onClick={() => append({miles: 0, amount: 1})}
                             >Add Trip</Button>
                 }
                 { !(name==="month" || name==="year") && 

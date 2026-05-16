@@ -40,7 +40,7 @@ export default function MileageForm({data}: {data: typeof mileage_defaults}) {
                             <CardDescription>What are the drives you make at least once a month?</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <TripListForm quantity={true} name="month" key="month" />
+                            <TripListForm mycss="grid grid-cols-4" quantity={true} name="month" key="month" />
                         </CardContent>
                     </Card>
                     <Card>
@@ -49,7 +49,7 @@ export default function MileageForm({data}: {data: typeof mileage_defaults}) {
                             <CardDescription>What are the drives you make at least once a year?</CardDescription>
                         </CardHeader>
                         <CardContent>
-                                <TripListForm quantity={true} name="year" key="year" />
+                                <TripListForm mycss="grid grid-cols-4" quantity={true} name="year" key="year" />
                         </CardContent>
                     </Card>
                 </CardContent>
