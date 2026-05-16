@@ -5,6 +5,7 @@ import {Field, FieldContent, FieldGroup, FieldLabel, FieldDescription} from '@/c
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
+import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupText } from '../ui/input-group';
 
 interface InputElementProps extends React.InputHTMLAttributes<HTMLInputElement> {
     name: string;
@@ -28,31 +29,48 @@ const InputElement: React.FC<InputElementProps> = ({name, remove, append, ...pro
             <CardContent>
                 <div className="justify-center items-center grid-cols-1">
                     <FieldGroup>
-                    <Field>
-                        <FieldLabel>From:</FieldLabel>
-                        <Input {...form.register(`${name}.from`)}/>
-                    </Field>
-                    <Field>
-                        <FieldLabel>To:</FieldLabel>
-                        <Input {...form.register(`${name}.to`)}/>
-                    </Field>
-                    <Field>
-                        <FieldLabel>Miles:</FieldLabel>
-                        <Input {...form.register(`${name}.miles`)}/>
-                    </Field>
-                    <Field>
-                        <center>
-                            <Button onClick={remove} variant="destructive">Remove</Button>
-                            <Button variant="outline" onClick={() => append(
-                                    {
-                                        to: form.getValues(`${name}.from`),
-                                        from: form.getValues(`${name}.to`),
-                                        miles: form.getValues(`${name}.miles`),
-                                    }
-                                    )}>Round Trip
-                                </Button>
-                        </center>
-                    </Field>
+                        <Field>
+                            <InputGroup>
+                                <InputGroupAddon align="inline-start">From:</InputGroupAddon>
+                                <InputGroupInput {...form.register(`${name}.from`)}/>
+                            </InputGroup>
+                        </Field>
+                        <Field>
+                            <InputGroup>
+                                <InputGroupAddon align="inline-start">To: </InputGroupAddon>
+                                <InputGroupInput {...form.register(`${name}.to`)}/>
+                            </InputGroup>
+                        </Field>
+                        <Field>
+                            <InputGroup>
+                                <InputGroupAddon align="inline-start">Miles:</InputGroupAddon>
+                                <Controller
+                                    name={`${name}.miles`}
+                                    control={form.control}
+                                    render={({field, fieldState}) => (
+                                    <InputGroupInput
+                                        {...form.register(`${name}.miles`)}
+                                        {...field}
+                                        type="number"
+                                        aria-invalid={fieldState.invalid}
+                                    />
+                                    )}
+                                />
+                            </InputGroup>
+                        </Field>
+                        <Field>
+                            <center>
+                                <Button onClick={remove} variant="destructive">Remove</Button>
+                                <Button variant="outline" onClick={() => append(
+                                        {
+                                            to: form.getValues(`${name}.from`),
+                                            from: form.getValues(`${name}.to`),
+                                            miles: form.getValues(`${name}.miles`),
+                                        }
+                                        )}>Round Trip
+                                    </Button>
+                            </center>
+                        </Field>
                     </FieldGroup>
                 </div>
             </CardContent>

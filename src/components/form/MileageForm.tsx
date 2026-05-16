@@ -8,51 +8,56 @@ import { Input } from '../ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import { mileage_defaults } from '../../../app/page';
 import { Button } from '../ui/button';
+import TripList from './TripList';
 
 export default function MileageForm({data}: {data: typeof mileage_defaults}) {
 
     const form = useFormContext();
 
     return (
-        <Card className="grid grid-cols-5">
-                <div className="col-span-4">
-                <CardHeader>
-                    <CardTitle>Gas Budget Calculator</CardTitle>
-                    <CardDescription>Plan out your monthly gas expenses based on your normal driving trips</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Weekly Trips</CardTitle>
-                            <CardDescription>Please input your normal drives that you make each day.</CardDescription>
-                        </CardHeader>
-                        <CardContent className='grid grid-cols-1'>
-                            {
-                                ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"].map((day) => (
-                                    <TripListForm name={day} key={day} />
-                                ))
-                            }
-                        </CardContent>
-                    </Card>
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Monthly Trips</CardTitle>
-                            <CardDescription>What are the drives you make at least once a month?</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <TripListForm quantity={true} name="month" key="month" />
-                        </CardContent>
-                    </Card>
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Annual Trips</CardTitle>
-                            <CardDescription>What are the drives you make at least once a year?</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                                <TripListForm quantity={true} name="year" key="year" />
-                        </CardContent>
-                    </Card>
-                </CardContent>
+        <Card>
+            <CardHeader>
+                <CardTitle>Gas Budget Calculator</CardTitle>
+                <CardDescription>Plan out your monthly gas expenses based on your normal driving trips</CardDescription>
+            </CardHeader>
+            <CardContent className="grid grid-cols-5 gap-5">
+            <div className="col-span-4">
+                <Card>
+                    
+                    <CardContent>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Weekly Trips</CardTitle>
+                                <CardDescription>Please input your normal drives that you make each day.</CardDescription>
+                            </CardHeader>
+                            <CardContent className='grid grid-cols-1 gap-4'>
+                                {
+                                    ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"].map((day) => (
+                                        <TripListForm name={day} key={day} />
+                                    ))
+                                }
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Monthly Trips</CardTitle>
+                                <CardDescription>What are the drives you make at least once a month?</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <TripList quantity={true} name="month" key="month" />
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Annual Trips</CardTitle>
+                                <CardDescription>What are the drives you make at least once a year?</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                    <TripList quantity={true} name="year" key="year" />
+                            </CardContent>
+                        </Card>
+                    </CardContent>
+                </Card>
             </div>
             <div>
                 <Card>
@@ -74,6 +79,7 @@ export default function MileageForm({data}: {data: typeof mileage_defaults}) {
                             )}
                         />
                         </Field>
+                        <br />
                         <Field>
                             <FieldLabel>Cost of Gas:</FieldLabel>
                             <Controller
@@ -88,6 +94,7 @@ export default function MileageForm({data}: {data: typeof mileage_defaults}) {
                             )}
                         />
                         </Field>
+                        <br />
                         <Field>
                             <FieldLabel>Target Year:</FieldLabel>
                             <Controller
@@ -165,10 +172,11 @@ export default function MileageForm({data}: {data: typeof mileage_defaults}) {
                                 </TableRow>
                             </TableBody>
                         </Table>
-                        <Button type="submit" form="mileage_form">Calculate</Button>
+                        <Button type="submit" form="mileage_form" size="lg">Calculate</Button>
                     </CardContent>
                 </Card>
             </div>
+            </CardContent>
         </Card>
     );
 }

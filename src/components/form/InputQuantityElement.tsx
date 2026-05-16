@@ -5,6 +5,7 @@ import {Field, FieldContent, FieldGroup, FieldLabel, FieldDescription, FieldSet}
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '../ui/input-group';
 
 interface InputElementProps extends React.InputHTMLAttributes<HTMLInputElement> {
     name: string;
@@ -23,48 +24,56 @@ const InputElement: React.FC<InputElementProps> = ({name, remove, append, ...pro
         const form = useFormContext();
 
     return (
-        <Card>
+        <Card className="grid-cols-1">
             <CardContent>
-                <div className="flex flex-row justify-right items-center flex">
+                <div className="items-center grid-cols-1">
                     <FieldSet>
-                    <Field>
-                        <FieldLabel>From:</FieldLabel>
-                        <Input {...form.register(`${name}.from`)}/>
-                    </Field>
-                    <Field>
-                        <FieldLabel>To:</FieldLabel>
-                        <Input {...form.register(`${name}.to`)}/>
-                    </Field>
-                    <Field>
-                        <FieldLabel>Miles:</FieldLabel>
-                        <Controller
-                            name={`${name}.miles`}
-                            control={form.control}
-                            render={({field, fieldState}) => (
-                            <Input
-                                {...form.register(`${name}.miles`)}
-                                {...field}
-                                type="number"
-                                aria-invalid={fieldState.invalid}
-                            />
-                            )}
-                        />
-                    </Field>
-                    <Field>
-                        <FieldLabel>Trip Count</FieldLabel>
-                        <Controller
-                            name={`${name}.amount`}
-                            control={form.control}
-                            render={({field, fieldState}) => (
-                            <Input
-                                {...form.register(`${name}.amount`)}
-                                {...field}
-                                type="number"
-                                aria-invalid={fieldState.invalid}
-                            />
-                            )}
-                        />
-                    </Field>
+                        <Field>
+                            <InputGroup>
+                                <InputGroupAddon align="inline-start">From:</InputGroupAddon>
+                                <InputGroupInput {...form.register(`${name}.from`)}/>
+                            </InputGroup>
+                        </Field>
+                        <Field>
+                            <InputGroup>
+                                <InputGroupAddon align="inline-start">To: </InputGroupAddon>
+                                <InputGroupInput {...form.register(`${name}.to`)}/>
+                            </InputGroup>
+                        </Field>
+                        <Field>
+                            <InputGroup>
+                                <InputGroupAddon align="inline-start">Miles:</InputGroupAddon>
+                                <Controller
+                                    name={`${name}.miles`}
+                                    control={form.control}
+                                    render={({field, fieldState}) => (
+                                    <InputGroupInput
+                                        {...form.register(`${name}.miles`)}
+                                        {...field}
+                                        type="number"
+                                        aria-invalid={fieldState.invalid}
+                                    />
+                                    )}
+                                />
+                            </InputGroup>
+                        </Field>
+                        <Field>
+                            <InputGroup>
+                                <InputGroupAddon align="inline-start">Amount:</InputGroupAddon>
+                                <Controller
+                                    name={`${name}.amount`}
+                                    control={form.control}
+                                    render={({field, fieldState}) => (
+                                    <InputGroupInput
+                                        {...form.register(`${name}.amount`)}
+                                        {...field}
+                                        type="number"
+                                        aria-invalid={fieldState.invalid}
+                                    />
+                                    )}
+                                />
+                            </InputGroup>
+                        </Field>
                         <Field>
                             <center>
                                 <Button variant="destructive" onClick={remove}>Delete</Button>

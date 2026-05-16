@@ -23,7 +23,7 @@ export default function TripListForm({name, quantity, ...props}: {name: string, 
                 <CardTitle>{name.at(0)?.toUpperCase() + name.slice(1).toLowerCase()}</CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="grid grid-cols-4">
+                <div className="grid grid-cols-4 gap-4">
                     {fields.map((field, index) => {
                                 if (quantity) {
                                     return ( 
@@ -51,22 +51,25 @@ export default function TripListForm({name, quantity, ...props}: {name: string, 
                         )
                     }
                 </div>
+                <div>
+                    <br />
                 { (name==="month" || name==="year") &&
                         <Button
                             type="button"
-                            variant="outline"
-                            size="sm"
+                            variant="default"
+                            size="default"
                             onClick={() => append({miles: 0, amount: 1})}
                             >Add Trip</Button>
                 }
                 { !(name==="month" || name==="year") && 
                         <Button
                     type="button"
-                    variant="outline"
-                    size="sm"
+                    variant="default"
+                    size="default"
                     onClick={() => append({miles: 0})}
                 >Add Trip</Button>
                     }
+                    </div>
             </CardContent>
         </Card>
     )
