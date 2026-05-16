@@ -14,11 +14,12 @@ interface InputElementProps extends React.InputHTMLAttributes<HTMLInputElement> 
     isOptional?: boolean;
     inputClassName?: string;
     outputClassName?: string;
-    remove?: () => void
+    remove?: () => void,
+    append: ({}) => void,
 
 }
 
-const InputElement: React.FC<InputElementProps> = ({name, remove, ...props}) => {
+const InputElement: React.FC<InputElementProps> = ({name, remove, append, ...props}) => {
 
         const form = useFormContext();
 
@@ -42,6 +43,14 @@ const InputElement: React.FC<InputElementProps> = ({name, remove, ...props}) => 
                     <Field>
                         <center>
                             <Button onClick={remove} variant="destructive">Remove</Button>
+                            <Button variant="outline" onClick={() => append(
+                                    {
+                                        to: form.getValues(`${name}.from`),
+                                        from: form.getValues(`${name}.to`),
+                                        miles: form.getValues(`${name}.miles`),
+                                    }
+                                    )}>Round Trip
+                                </Button>
                         </center>
                     </Field>
                     </FieldGroup>

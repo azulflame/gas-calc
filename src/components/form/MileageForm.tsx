@@ -26,7 +26,7 @@ export default function MileageForm({data}: {data: typeof mileage_defaults}) {
                             <CardTitle>Weekly Trips</CardTitle>
                             <CardDescription>Please input your normal drives that you make each day.</CardDescription>
                         </CardHeader>
-                        <CardContent className='grid grid-cols-7'>
+                        <CardContent className='grid grid-cols-1'>
                             {
                                 ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"].map((day) => (
                                     <TripListForm name={day} key={day} />
@@ -40,7 +40,7 @@ export default function MileageForm({data}: {data: typeof mileage_defaults}) {
                             <CardDescription>What are the drives you make at least once a month?</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <TripListForm mycss="grid grid-cols-4" quantity={true} name="month" key="month" />
+                            <TripListForm quantity={true} name="month" key="month" />
                         </CardContent>
                     </Card>
                     <Card>
@@ -49,7 +49,7 @@ export default function MileageForm({data}: {data: typeof mileage_defaults}) {
                             <CardDescription>What are the drives you make at least once a year?</CardDescription>
                         </CardHeader>
                         <CardContent>
-                                <TripListForm mycss="grid grid-cols-4" quantity={true} name="year" key="year" />
+                                <TripListForm quantity={true} name="year" key="year" />
                         </CardContent>
                     </Card>
                 </CardContent>

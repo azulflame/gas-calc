@@ -7,7 +7,7 @@ import InputElement from './InputElement';
 import InputQuantityElement from './InputQuantityElement';
 
 
-export default function TripListForm({name, quantity, mycss, ...props}: {mycss?: string, name: string, quantity?: boolean}) {
+export default function TripListForm({name, quantity, ...props}: {name: string, quantity?: boolean}) {
 
     const form = useFormContext()
 
@@ -23,7 +23,7 @@ export default function TripListForm({name, quantity, mycss, ...props}: {mycss?:
                 <CardTitle>{name.at(0)?.toUpperCase() + name.slice(1).toLowerCase()}</CardTitle>
             </CardHeader>
             <CardContent>
-                <div className={`${mycss}`}>
+                <div className="grid grid-cols-4">
                     {fields.map((field, index) => {
                                 if (quantity) {
                                     return ( 
@@ -31,6 +31,7 @@ export default function TripListForm({name, quantity, mycss, ...props}: {mycss?:
                                             key={field.id}
                                             id={`${name}.${index}`}
                                             remove={() => remove(index)}
+                                            append={append}
                                             {...form.register(`${name}.${index}`)}
                                         />
                                     )
@@ -41,6 +42,7 @@ export default function TripListForm({name, quantity, mycss, ...props}: {mycss?:
                                             key={field.id}
                                             id={`${name}.${index}`}
                                             remove={() => remove(index)}
+                                            append={append}
                                             {...form.register(`${name}.${index}`)}
                                         />
                                     )
