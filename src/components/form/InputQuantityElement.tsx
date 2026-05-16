@@ -1,9 +1,8 @@
 "use client"
 
 import { Controller, useFormContext } from 'react-hook-form';
-import {Field, FieldContent, FieldGroup, FieldLabel, FieldDescription, FieldSet} from '@/components/ui/field';
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardFooter } from '../ui/card';
+import {Field, FieldSet} from '@/components/ui/field';
+import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '../ui/input-group';
 
