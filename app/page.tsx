@@ -140,12 +140,12 @@ export default function Home() {
     days.push(mileage.thursday.map(x => x.miles).reduce((prev, curr) => prev+ curr, 0))
     days.push(mileage.friday.map(x => x.miles).reduce((prev, curr) => prev+ curr, 0))
     days.push(mileage.saturday.map(x => x.miles).reduce((prev, curr) => prev+ curr, 0))
-    const month = (mileage.month.map(x => x.miles * x.amount ).reduce((prev, curr) => prev+curr, 0) + mileage.year.map(x => x.miles * x.amount ).reduce((prev, curr) => prev+curr, 0))/12
+    const month = mileage.month.map(x => x.miles * x.amount ).reduce((prev, curr) => prev+curr, 0) + mileage.year.map(x => x.miles * x.amount ).reduce((prev, curr) => prev+curr, 0)/12
 
     let jan = month;
     for (let i = 1; i <= 31; i++)
     {
-        jan += days[new Date(Date.parse(mileage.targetYear.toString() + "-01-" + i.toString())).getDate()%7]
+      jan += days[new Date(Date.parse(`${mileage.targetYear.toString()}-01-${i.toString()}`)).getUTCDay()]
     }
     toOutput.january = (jan / mileage.mpg) * mileage.cost;
 
@@ -153,77 +153,78 @@ export default function Home() {
     const feb_days = (new Date().getFullYear() % 4 == 0) ? 29 : 28;
     for (let i = 1; i <= feb_days; i++)
     {
-        feb += days[new Date(Date.parse(mileage.targetYear.toString() + "-02-" + i.toString())).getDate()%7]
+      feb += days[new Date(Date.parse(`${mileage.targetYear.toString()}-02-${i.toString()}`)).getUTCDay()]
     }
     toOutput.february = (feb / mileage.mpg) * mileage.cost;
 
     let mar = month;
     for (let i = 1; i <= 31; i++)
     {
-        mar += days[new Date(Date.parse(mileage.targetYear.toString() + "-03-" + i.toString())).getDate()%7]
+      mar += days[new Date(Date.parse(`${mileage.targetYear.toString()}-03-${i.toString()}`)).getUTCDay()]
     }
     toOutput.march = (mar / mileage.mpg) * mileage.cost;
 
     let apr = month;
     for (let i = 1; i <= 30; i++)
     {
-        apr += days[new Date(Date.parse(mileage.targetYear.toString() + "-04-" + i.toString())).getDate()%7]
+      apr += days[new Date(Date.parse(`${mileage.targetYear.toString()}-04-${i.toString()}`)).getUTCDay()]
     }
     toOutput.april = (apr / mileage.mpg) * mileage.cost;
 
     let may = month;
     for (let i = 1; i <= 31; i++)
     {
-        may += days[new Date(Date.parse(mileage.targetYear.toString() + "-05-" + i.toString())).getDate()%7]
+        may += days[new Date(Date.parse(`${mileage.targetYear.toString()}-05-${i.toString()}`)).getUTCDay()]
     }
     toOutput.may = (may / mileage.mpg) * mileage.cost;
 
     let jun = month;
     for (let i = 1; i <= 30; i++)
     {
-        jun += days[new Date(Date.parse(mileage.targetYear.toString() + "-06-" + i.toString())).getDate()%7]
+        jun += days[new Date(Date.parse(`${mileage.targetYear.toString()}-06-${i.toString()}`)).getUTCDay()]
     }
     toOutput.june = (jun / mileage.mpg) * mileage.cost;
 
     let jul = month;
     for (let i = 1; i <= 31; i++)
     {
-        jul += days[new Date(Date.parse(mileage.targetYear.toString() + "-07-" + i.toString())).getDate()%7]
+        jul += days[new Date(Date.parse(`${mileage.targetYear.toString()}-07-${i.toString()}`)).getUTCDay()]
     }
     toOutput.july = (jul / mileage.mpg) * mileage.cost;
 
     let aug = month;
     for (let i = 1; i <= 31; i++)
     {
-        aug += days[new Date(Date.parse(mileage.targetYear.toString() + "-08-" + i.toString())).getDate()%7]
+        aug += days[new Date(Date.parse(`${mileage.targetYear.toString()}-08-${i.toString()}`)).getUTCDay()]
     }
     toOutput.august = aug / (mileage.mpg) * mileage.cost;
 
     let sep = month;
     for (let i = 1; i <= 30; i++)
     {
-        sep += days[new Date(Date.parse(mileage.targetYear.toString() + "-09-" + i.toString())).getDate()%7]
+        sep += days[new Date(Date.parse(`${mileage.targetYear.toString()}-09-${i.toString()}`)).getUTCDay()]
     }
     toOutput.september = (sep / mileage.mpg) * mileage.cost;
 
     let oct = month;
     for (let i = 1; i <= 31; i++)
     {
-        oct += days[new Date(Date.parse(mileage.targetYear.toString() + "-10-" + i.toString())).getDate()%7]
+        oct += days[new Date(Date.parse(`${mileage.targetYear.toString()}-10-${i.toString()}`)).getUTCDay()]
     }
     toOutput.october = (oct / mileage.mpg) * mileage.cost;
 
     let nov = month;
     for (let i = 1; i <= 30; i++)
     {
-        nov += days[new Date(Date.parse(mileage.targetYear.toString() + "-11-" + i.toString())).getDate()%7]
+        nov += days[new Date(Date.parse(`${mileage.targetYear.toString()}-11-${i.toString()}`)).getUTCDay()]
     }
     toOutput.november = (nov / mileage.mpg) * mileage.cost;
 
     let dec = month;
     for (let i = 1; i <= 31; i++)
     {
-        dec += days[new Date(Date.parse(mileage.targetYear.toString() + "-12-" + i.toString())).getDate()%7]
+      const day = days[new Date(Date.parse(`${mileage.targetYear.toString()}-12-${i.toString()}`)).getUTCDay()]
+        dec += day
     }
     toOutput.december = (dec / mileage.mpg) * mileage.cost;
 
